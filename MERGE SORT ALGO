@@ -1,0 +1,29 @@
+void merge(vectir<int>&v,int low,int mid,int high){
+int right=low;
+int left=mid+1;
+vector<int> t;
+while(right<=mid&&left<=high){
+if(v[right]<=v[left]){
+ t.push_back(v[right]);
+right++;}
+else {
+t.push_back(v[left]);
+left++;}
+}
+while(right<=mid) {
+ t.push_back(v[right]);
+right++;
+}
+while(left<=high){
+t.push_back(v[left]);
+left++;
+}
+for(int i=low;i<=high;i++)v[i]=t[i];
+}
+void ms(vector<int>&v,int low,int high){
+if(low==high) return;
+int mid(low+high)/2;
+ms(v,low,mid);
+ms(v,mid+1,high);
+merge(v,low,mid,high);
+}
